@@ -1,15 +1,16 @@
 /*
  * @Author: milkandpotato milkandpotato@outlook.com
- * @Date: 2024-04-18 19:48:49
+ * @Date: 2024-04-19 10:11:10
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-04-19 10:22:23
- * @FilePath: /helloWorld/src/Math.cpp
+ * @LastEditTime: 2024-04-19 10:24:55
+ * @FilePath: /helloWorld/include/Log.h
  * @Description: 
  * 
  * Copyright (c) 2024 by milkandpotato, All Rights Reserved. 
  */
-#include "../include/Math.h"
+#pragma once
 
-int Mutiply(int a,int b){
-    return a*b;
-}
+#include <iostream>
+
+void Log(char* message);
+void Log(int message);
