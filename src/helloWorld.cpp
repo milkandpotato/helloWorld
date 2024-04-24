@@ -12,46 +12,11 @@
 #include "../include/Log.h"
 #include "../include/Math.h"
 #include "Entity.cpp"
-#include <iostream>
-#include <string>
+#include "Logger.cpp"
+#include <array>
 
-class Logger {
-public:
-  enum Level { info = 1, warning, error };
-
-private:
-  int m_LogLevel = info;
-
-public:
-  Logger() {
-    // m_LogLevel = info;
-    std::cout << "created Eentity!" << std::endl;
-  }
-  ~Logger() { std::cout << "destroyed Eentity!" << std::endl; }
-  void Info(const char *message) {
-    if (m_LogLevel <= info) {
-      std::cout << "[INFO]: " << message << std::endl;
-    }
-  }
-  void Info(std::string message) {
-    if (m_LogLevel <= info) {
-      std::cout << "[INFO]: " << message << std::endl;
-    }
-  }
-  void Warning(const char *message) {
-    if (m_LogLevel <= warning) {
-      std::cout << "[WARNING]: " << message << std::endl;
-    }
-  }
-  void Error(const char *message) {
-    if (m_LogLevel <= error) {
-      std::cout << "[ERROR]: " << message << std::endl;
-    }
-  }
-  void SetLogLevel(Level level) { m_LogLevel = level; }
-};
-
-int main() {
+int main()
+{
   Logger logger;
   /*logger.Info("Hello!");
   logger.Warning("Hello!");
@@ -61,4 +26,17 @@ int main() {
   logger.Info(entity->GetName());
   Player *player = new Player("zhangsan");
   logger.Info(player->GetClassName());
+
+  int count = 5;
+  int *array_1 = new int[5];  // 原始声明
+  std::array<int, 5> array_2; // C++11 声明
+  for (int i = 0; i < count; i++)
+  {
+    array_1[i] = 2;
+    array_2[i] = 3;
+  }
+  std::cout << array_1 << std::endl;
+  //std::cout << array_2.at(1) << std::endl;
+
+  std::cin.get();
 }
