@@ -1,38 +1,39 @@
 #include <iostream>
+#include <string>
 
 class Logger {
 public:
-  enum Level { info = 1, warning, error };
+  enum Level { LogLevelinfo = 1, LogLevelWarning, LogLevelError };
 
 private:
-  int m_LogLevel = info;
+  int m_LogLevel = LogLevelinfo;
 
 public:
     //构造函数
-  Logger() {
+  Logger():m_LogLevel(LogLevelinfo) {
     // m_LogLevel = info;
-    std::cout << "created Eentity!" << std::endl;
+    std::cout << "created Logger!" << std::endl;
   }
   //析构函数
-  ~Logger() { std::cout << "destroyed Eentity!" << std::endl; }
-  void Info(const char *message) {
-    if (m_LogLevel <= info) {
+  ~Logger() { std::cout << "destroyed Logger!" << std::endl; }
+  void Info(const char* message) {
+    if (m_LogLevel <= LogLevelinfo) {
       std::cout << "[INFO]: " << message << std::endl;
     }
   }
   
-  void Info(std::string message) {
-    if (m_LogLevel <= info) {
+  void Info(const std::string& message) {
+    if (m_LogLevel <= LogLevelinfo) {
       std::cout << "[INFO]: " << message << std::endl;
     }
   }
   void Warning(const char *message) {
-    if (m_LogLevel <= warning) {
+    if (m_LogLevel <= LogLevelWarning) {
       std::cout << "[WARNING]: " << message << std::endl;
     }
   }
   void Error(const char *message) {
-    if (m_LogLevel <= error) {
+    if (m_LogLevel <= LogLevelError) {
       std::cout << "[ERROR]: " << message << std::endl;
     }
   }

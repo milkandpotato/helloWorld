@@ -13,17 +13,46 @@
 #include <string>
 
 class Entity {
-public:
-  virtual std::string GetName() { return "Entity!"; }
-  virtual std::string GetClassName() = 0;
-};
-
-class Player : public Entity {
 private:
   std::string name;
 
 public:
-  Player(const std::string playerName) : name(playerName) {}
-  std::string GetName() override { return name; }
+  Entity():name("entity"){
+    std::cout << "created entity!" << std::endl;
+  }
+  ~Entity(){
+    std::cout << "destroyed entity!" << std::endl;
+  }
+  std::string GetName() { return name; }
+  void SetName(std::string entityName){
+    name = entityName;
+  }
+  //虚函数
+  //virtual std::string GetClassName() = 0;
+};
+
+class Player : public Entity {
+private:
+  int m_x,m_y;
+  int number;
+
+public:
+  Player(const std::string &playerName){
+    SetName(playerName);
+    std::cout << "created " << GetName() << "!" << std::endl;
+  }
+  //number(2) 使用了初始化列表，将2赋值给number属性
+  Player():number(2){
+    std::cout << "created " << GetName() << "!" << std::endl;
+  } 
+  ~Player(){
+    std::cout << "destroyed " << GetName() << "!" << std::endl;
+  }
   std::string GetClassName(){return "ClassName";}
+  int GetX() const{ //const 相当于 readonly关键字
+    return m_x;
+  }
+  int SetX(int x){
+    m_x = x;
+  }
 };
