@@ -1,41 +1,51 @@
+/*
+ * @Description  : 日志类
+ * @Version      : V1.0.0
+ * @Author       : 雨翀 孙 milkandpotato@outlook.com
+ * @Date         : 2024-04-27 16:00:37
+ * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
+ * @LastEditTime : 2024-04-27 16:00:37
+ * @FilePath     : Logger.cpp
+ * Copyright 2024 Marvin, All Rights Reserved. 
+ * 2024-04-27 16:00:37
+ */
 #include <iostream>
 #include <string>
+#include "../include/Logger.h"
 
-class Logger {
-public:
-  enum Level { LogLevelinfo = 1, LogLevelWarning, LogLevelError };
+// 构造函数实现
+Logger::Logger() : logLevel(LogLevelinfo)
+{
+  Log("created Logger!");
+}
+Logger::~Logger()
+{
+  Log("destroyed Logger!");
+}
 
-private:
-  int m_LogLevel = LogLevelinfo;
-
-public:
-    //构造函数
-  Logger():m_LogLevel(LogLevelinfo) {
-    // m_LogLevel = info;
-    std::cout << "created Logger!" << std::endl;
+// 成员函数实现
+void Logger::Info(const std::string &message) const
+{
+  if (logLevel <= LogLevelinfo)
+  {
+    std::string infoMessage = "[INFO]: " + message;
+    Log(infoMessage);
   }
-  //析构函数
-  ~Logger() { std::cout << "destroyed Logger!" << std::endl; }
-  void Info(const char* message) {
-    if (m_LogLevel <= LogLevelinfo) {
-      std::cout << "[INFO]: " << message << std::endl;
-    }
+}
+void Logger::Warning(const std::string &message) const
+{
+  if (logLevel <= LogLevelWarning)
+  {
+    std::string warnMessage = "[WARNING]: " + message;
+    Log(warnMessage);
   }
-  
-  void Info(const std::string& message) {
-    if (m_LogLevel <= LogLevelinfo) {
-      std::cout << "[INFO]: " << message << std::endl;
-    }
+}
+void Logger::Error(const std::string &message) const
+{
+  if (logLevel <= LogLevelError)
+  {
+    std::string errorMessage = "[ERROR]: " + message;
+    Log(errorMessage);
   }
-  void Warning(const char *message) {
-    if (m_LogLevel <= LogLevelWarning) {
-      std::cout << "[WARNING]: " << message << std::endl;
-    }
-  }
-  void Error(const char *message) {
-    if (m_LogLevel <= LogLevelError) {
-      std::cout << "[ERROR]: " << message << std::endl;
-    }
-  }
-  void SetLogLevel(Level level) { m_LogLevel = level; }
-};
+}
+void Logger::SetLogLevel(Level level) { this->logLevel = level; };

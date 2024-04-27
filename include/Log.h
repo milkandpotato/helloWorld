@@ -13,7 +13,5 @@
 #include <iostream>
 #include <string>
 
-void Log(char *message);
-void Log(std::string &message);
-void Log(int *message);
-void Log(int message);
+void Log(const std::string &message);
+void Log(const int &message);

@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0) #cmake最低版本需求，不加入此行会受到警告信息
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5) #cmake最低版本需求，不加入此行会受到警告信息
 
 PROJECT(HELLO) #项目名称
 

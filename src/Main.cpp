@@ -1,26 +1,40 @@
-#include "../include/Log.h"
-#include "../include/Math.h"
-#include "Entity.cpp"
-#include "Logger.cpp"
+/*
+ * @Description  : 
+ * @Version      : V1.0.0
+ * @Author       : 雨翀 孙 milkandpotato@outlook.com
+ * @Date         : 2024-04-27 15:09:50
+ * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
+ * @LastEditTime : 2024-04-27 16:16:43
+ * @FilePath     : Main.cpp
+ * Copyright 2024 Marvin, All Rights Reserved. 
+ * 2024-04-27 15:09:50
+ */
 #include <array>
 #include <stdlib.h>
 
+#include "../include/Player.h"
+
+//重载了<<（左移运算符）
+std::ostream &operator<<(std::ostream &stream, Player &player)
+{
+  stream << player.GetX() << "," << player.GetY();
+  return stream;
+}
+
 int main()
 {
-    Logger logger;
-
     //实体类创建
-    logger.Info("Hello!");
-    logger.Warning("Hello!");
-    logger.Error("Hello!");
+    // logger.Info("Hello!");
+    // logger.Warning("Hello!");
+    // logger.Error("Hello!");
 
     //C++的继承
     //构造函数先执行父类的构造函数，然后再执行子类的构造函数
     Entity* entity = new Player("player1");
-    logger.Info((*entity).GetName());
+    entity->GetLogger().Info((*entity).GetName());
     delete entity;
     Player* player = new Player("player2");
-    logger.Info(player->GetName());
+    player->GetLogger().Info(player->GetName());
     delete player;
 
     //数组
@@ -54,6 +68,22 @@ int main()
     //隐式转换
     std::string playerName = "player5"; //定义了一个string
     Player player5 = playerName; //在将string传给对象时，隐式执行了Player(std::string name)这个构造函数
+    //使用带有explicit关键字的构造函数
+    Player player6(2.1,3.5);
+    player6.SetName("player6");
+    Player player7(6.92,3.27);
+    player7.SetName("player7");
+    Player player8 = player6 + player7;
+    std::cout << player8 << std::endl;
+
+    //指针的逆向引用和引用的指向的区别
+    Player player9(9);
+    player9.SetName("player9");
+    //创建指针
+    Player* point = &player9;
+    //指针的逆向引用
+    player9.GetLogger().Info((*point).GetName());
+    player9.GetLogger().Info(point->GetName());
 
     //程序结束，delete player3,logger,delete时先处理子类的析构函数，再处理父类的析构函数
     std::cin.get();
