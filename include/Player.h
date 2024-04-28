@@ -30,6 +30,9 @@ public:
     explicit Player(float num_x, float num_y);
     ~Player();
 
+    //拷贝构造函数
+    Player(const char* &playerName);
+
     // 成员函数
     float GetX() const;
     void SetX(float x);

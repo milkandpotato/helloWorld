@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-04-27 15:58:16
  * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-04-27 15:58:16
+ * @LastEditTime : 2024-04-28 19:09:34
  * @FilePath     : Player.cpp
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-04-27 15:58:16
@@ -15,13 +15,9 @@
 Player::Player(const std::string &playerName)
 {
     SetName(playerName);
-    std::string message = "created" + this->GetName() + "!";
+    std::string message = "created " + this->GetName() + "!";
     this->GetLogger().Info(message);
 }
-// number(2) 使用了初始化列表，将2赋值给number属性
-/*Player::Player():number(2){
-  std::cout << "created " << GetName() << "!" << std::endl;
-}*/
 // 默认的构造函数形式，包含了隐式构造函数
 Player::Player(int num_a):number(num_a)
 {
@@ -33,6 +29,7 @@ Player::Player(float num_x, float num_y)
     this->x = num_x;
     this->y = num_y;
 };
+//析构函数
 Player::~Player()
 {
     std::string message = "destroyed " + this->GetName() + "!";
