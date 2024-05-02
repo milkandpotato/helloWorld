@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-04-27 15:58:16
  * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-04-28 19:09:34
+ * @LastEditTime : 2024-05-01 14:18:49
  * @FilePath     : Player.cpp
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-04-27 15:58:16
@@ -64,4 +64,10 @@ Player Player::Add(const Player &another) const
 Player Player::operator+(const Player &another) const
 {
     return Player(this->x + another.x, y + another.y);
+}
+
+//重载<<运算符
+std::ostream& operator<< (ostream& stream, Player player){
+    stream << player.GetX() << "," << player.GetY();
+    return stream;
 }

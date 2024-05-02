@@ -12,6 +12,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "./Entity.h"
 

@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-04-27 15:09:50
  * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-04-28 21:31:53
+ * @LastEditTime : 2024-05-01 14:41:04
  * @FilePath     : Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-04-27 15:09:50
@@ -12,6 +12,7 @@
 #include <array>
 #include <stdlib.h>
 #include <memory>
+#include <vector>
 
 #include "../include/Player.h"
 #include "../include/PlayerCopier.h"
@@ -112,7 +113,29 @@ int main()
   cout << copier.GetBuffer() << endl;
   cout << copier2.GetBuffer() << endl;
   cout << copier3.GetBuffer() << endl;
-  
+
+  /**
+   * 动态数组
+   */
+  vector<Player> players;
+  players.push_back(player6);
+  players.push_back(player7);
+  for (int i = 0; i < players.size(); i++)
+  {
+    std::cout << players[i] << std::endl;
+  }
+
+  /**
+   * 动态数组优化
+   */
+  vector<Player> players2;
+  // 初始化数组大小
+  players2.reserve(2);
+  // push_back是将main函数中的对象复制到vector中，在放进数组中去
+  // emplace_back是直接在实际的vector中创建
+  players2.emplace_back(6.65, 7.76);
+  players2.emplace_back(6.67, 7.78);
+
   // 程序结束，delete player3,logger,delete时先处理子类的析构函数，再处理父类的析构函数
   std::cin.get();
 }
