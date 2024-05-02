@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-04-27 15:09:50
  * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-05-01 14:41:04
+ * @LastEditTime : 2024-05-02 16:06:41
  * @FilePath     : Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-04-27 15:09:50
@@ -13,18 +13,12 @@
 #include <stdlib.h>
 #include <memory>
 #include <vector>
+#include <GLFW/glfw3.h>
 
 #include "../include/Player.h"
 #include "../include/PlayerCopier.h"
 
 using namespace std;
-
-// 重载了<<（左移运算符）
-std::ostream &operator<<(std::ostream &stream, Player &player)
-{
-  stream << player.GetX() << "," << player.GetY();
-  return stream;
-}
 
 int main()
 {
@@ -79,7 +73,7 @@ int main()
   Player player7(6.92, 3.27);
   player7.SetName("player7");
   Player player8 = player6 + player7;
-  std::cout << player8 << std::endl;
+  //std::cout << player8 << std::endl;
 
   // 指针的逆向引用和引用的指向的区别
   Player player9(9);
@@ -122,7 +116,7 @@ int main()
   players.push_back(player7);
   for (int i = 0; i < players.size(); i++)
   {
-    std::cout << players[i] << std::endl;
+    //std::cout << players[i] << std::endl;
   }
 
   /**
