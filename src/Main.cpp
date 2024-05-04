@@ -3,21 +3,21 @@
  * @Version      : V1.0.0
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
- * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-05-02 16:49:31
- * @FilePath     : Main.cpp
+ * @LastEditors: milkandpotato milkandpotato@outlook.com
+ * @LastEditTime: 2024-05-03 11:54:08
+ * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-05-02 16:34:31
  */
-using namespace std;
 
 #include <GLFW/glfw3.h>
 #include <iostream>
 
 int main()
 {
+  std::cout << __cplusplus << std::endl;
   int a = glfwInit();
-  cout << a << endl;
+  std::cout << a << std::endl;
   
-  cin.get();
+  std::cin.get();
 }
