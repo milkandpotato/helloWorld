@@ -1,4 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5) #cmake最低版本需求，不加入此行会受到警告信息
+set(CMAKE_CXX_STANDARD 11)
 project(hello)
 
 message("=====================================")
