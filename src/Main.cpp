@@ -31,13 +31,20 @@ int main()
   }
 
   // 线程的使用
-  {
-    bool is_Finished = false;
-    std::thread worker(doWorkTest, std::ref(is_Finished));
-    std::cin.get();
-    is_Finished = true;
-    std::cout << "Finished..." << std::endl;
+  // {
+  //   bool is_Finished = false;
+  //   std::thread worker(doWorkTest, std::ref(is_Finished));
+  //   std::cin.get();
+  //   is_Finished = true;
+  //   std::cout << "Finished..." << std::endl;
 
+  //   worker.join();
+  //   std::cin.get();
+  // }
+
+  //定时器的使用
+  {
+    std::thread worker(TimerTest);
     worker.join();
     std::cin.get();
   }

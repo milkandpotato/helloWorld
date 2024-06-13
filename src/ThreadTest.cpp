@@ -22,3 +22,12 @@ void doWorkTest(bool &is_Finished)
         std::this_thread::sleep_for(1s);
     }
 }
+
+void TimerTest(){
+    CustomTimer timer;
+
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << "Timer第" << i << "次打印" << std::endl;
+    }
+}

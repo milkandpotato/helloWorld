@@ -12,5 +12,8 @@
 #pragma once
 #include <thread>
 #include <iostream>
+#include "../include/CustomTimer.hpp"
 
 void doWorkTest(bool &is_Finished);
+
+void TimerTest();
