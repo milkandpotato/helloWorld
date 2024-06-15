@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5) #cmake最低版本需求，不加入此行会受到警告信息
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14) #literals需要C++14以上的版本
 project(hello)
 
 message("=====================================")

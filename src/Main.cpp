@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-15 10:38:19
+ * @LastEditTime: 2024-06-15 11:24:29
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -110,13 +110,13 @@ int main() {
 
     std::vector<int> array = {2, 5, 4, 7, 1};
     std::sort(array.begin(), array.end()); // 一般排序
-    std::string decrease = NumberUtils::vector2String(std::ref(array));
+    std::string decrease = vector2String(std::ref(array));
     std::cout << decrease << std::endl;
     //使用自定义函数进行降序排列
-    // std::sort(array.begin(), array.end(), [](int a, int b) 
-    //           { return a > b; });
-    // std::string re
-    // std::cout << vector2String(std::ref(array)) << std::endl;
+    std::sort(array.begin(), array.end(), [](int a, int b) 
+              { return a > b; });
+    std::string increase = vector2String(std::ref(array));
+    std::cout << vector2String(std::ref(array)) << std::endl;
 
     std::cin.get();
   }

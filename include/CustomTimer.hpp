@@ -3,9 +3,9 @@
  * @Version      : V1.0.0
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-06-13 14:05:49
- * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-06-13 14:27:38
- * @FilePath     : CustomTimer.hpp
+ * @LastEditors: milkandpotato milkandpotato@outlook.com
+ * @LastEditTime: 2024-06-15 11:08:47
+ * @FilePath: /helloWorld/include/CustomTimer.hpp
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-06-13 14:05:49
  */
@@ -16,7 +16,11 @@
 
 struct CustomTimer
 {
-    std::chrono::time_point<std::chrono::system_clock> start,end;
+    #ifdef  _WIN32
+        std::chrono::time_point<std::chrono::system_clock> start,end;
+    #elif defined (__APPLE__) && defined (__MATH__)
+        std::chrono::time_point<std::chrono::steady_clock> start,end;
+    #endif
     std::chrono::duration<float> duration;
 
     //构造函数
