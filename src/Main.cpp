@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-15 11:24:29
+ * @LastEditTime: 2024-06-15 12:17:02
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -12,6 +12,7 @@
 
 // #include <GLFW/glfw3.h>
 #include <iostream>
+#include <string.h>
 #include <vector>
 #include <algorithm>
 // #include <thread>
@@ -26,6 +27,10 @@ void ForEach(std::vector<int> &array, void (*func)(int)) {
   }
 }
 void PrintInt(int value) { std::cout << "value:" << value << std::endl; }
+
+struct TestEntity{
+  int x,y;
+};
 
 int main() {
   /* std::cout << __cplusplus << std::endl;
@@ -105,19 +110,28 @@ int main() {
   // }
 
   // 排序
+  // {
+  //   std::string output = "";
+
+  //   std::vector<int> array = {2, 5, 4, 7, 1};
+  //   std::sort(array.begin(), array.end()); // 一般排序
+  //   std::string decrease = vector2String(std::ref(array));
+  //   std::cout << decrease << std::endl;
+  //   //使用自定义函数进行降序排列
+  //   std::sort(array.begin(), array.end(), [](int a, int b) 
+  //             { return a > b; });
+  //   std::string increase = vector2String(std::ref(array));
+  //   std::cout << vector2String(std::ref(array)) << std::endl;
+
+  //   std::cin.get();
+  // }
+
+  //类型双关
   {
-    std::string output = "";
-
-    std::vector<int> array = {2, 5, 4, 7, 1};
-    std::sort(array.begin(), array.end()); // 一般排序
-    std::string decrease = vector2String(std::ref(array));
-    std::cout << decrease << std::endl;
-    //使用自定义函数进行降序排列
-    std::sort(array.begin(), array.end(), [](int a, int b) 
-              { return a > b; });
-    std::string increase = vector2String(std::ref(array));
-    std::cout << vector2String(std::ref(array)) << std::endl;
-
-    std::cin.get();
+    TestEntity e = {1,2};
+    std::cout << &e << std::endl;//获取到e的内存地址
+    std::cout << (int*)&e << std::endl;//将e的内存地址识别为int类型的内存地址
+    std::cout << *(int*)&e << std::endl;//解析转换后的内存地址，其实地址的内容为x的值
+    std::cout << *((int*)&e+1) << std::endl;//在x的起始地址上添加平移一个int的长度，也就是4个字节，得到y的值的地址
   }
 }
