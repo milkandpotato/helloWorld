@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-16 22:46:50
+ * @LastEditTime: 2024-06-16 23:11:38
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -173,6 +173,7 @@ int main() {
         std::cout << "a created!" << std::endl;
         
       };
+      //将析构函数变成虚析构函数之后，相当于给b添加了一个析构函数
       virtual ~a(){
         std::cout << "a destroyed!" <<std::endl;
       };
@@ -202,6 +203,23 @@ int main() {
     std::cout << "=====>C" <<std::endl;
     a* testC = new b();
     delete testC;//delete C 的时候，调用了a和b的构造函数，但是只调用了a的析构函数，delete[] array未执行
+
+  }
+
+  //类型转换
+  {
+    //类型转换总共有四种
+    //1.static_cast
+    //2.dynamic_cast
+    //3.reinterpret_cast
+    //4.const_cast
+
+    std::cout << "===============Type Cast================" << std::endl;
+    double a = 5.35;
+    double value = (int)a + 5;
+    double value2 = static_cast<int>(a)+5;
+    std::cout << value << std::endl;
+    std::cout << value2 << std::endl;
 
   }
 }
