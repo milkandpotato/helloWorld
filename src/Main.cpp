@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-15 12:35:22
+ * @LastEditTime: 2024-06-16 22:46:50
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -162,5 +162,46 @@ int main() {
     std::cout << "===============Union================" << std::endl;
     std::cout << &b.x << "," << &b.y << std::endl;
     std::cout << &b.a << std::endl;
+  }
+
+  //构造函数的虚函数
+  {
+    std::cout << "===============Virtual Destructor================" << std::endl;
+    class a {
+      public:
+      a(){
+        std::cout << "a created!" << std::endl;
+        
+      };
+      virtual ~a(){
+        std::cout << "a destroyed!" <<std::endl;
+      };
+    };
+
+    class b : public a{
+      public:
+      b(){
+        std::cout << "b created!" <<std::endl;
+        array = new int[5];
+      };
+      ~b(){
+        std::cout<< "b destroyed!" << std::endl;
+        delete[] array;
+      };
+
+      private:
+        int* array;
+    };
+
+    std::cout << "=====>A" <<std::endl;
+    a* testA = new a();
+    delete testA;
+    std::cout << "=====>B" <<std::endl;
+    b* testB = new b();
+    delete testB;
+    std::cout << "=====>C" <<std::endl;
+    a* testC = new b();
+    delete testC;//delete C 的时候，调用了a和b的构造函数，但是只调用了a的析构函数，delete[] array未执行
+
   }
 }
