@@ -4,21 +4,21 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-15 12:17:02
+ * @LastEditTime: 2024-06-15 12:35:22
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
  */
 
 // #include <GLFW/glfw3.h>
+#include <algorithm>
 #include <iostream>
 #include <string.h>
 #include <vector>
-#include <algorithm>
 // #include <thread>
-#include "../include/template/Log.hpp"
-#include "../include/ThreadTest.hpp"
 #include "../include/NumberUtils.hpp"
+#include "../include/ThreadTest.hpp"
+#include "../include/template/Log.hpp"
 
 // 函数指针
 void ForEach(std::vector<int> &array, void (*func)(int)) {
@@ -28,8 +28,8 @@ void ForEach(std::vector<int> &array, void (*func)(int)) {
 }
 void PrintInt(int value) { std::cout << "value:" << value << std::endl; }
 
-struct TestEntity{
-  int x,y;
+struct TestEntity {
+  int x, y;
 };
 
 int main() {
@@ -50,9 +50,9 @@ int main() {
     std::vector<int> funcArray = {0, 2, 4, 6, 8};
     ForEach(funcArray, PrintInt);
     // lambda
-    //第一种用法
+    // 第一种用法
     std::for_each(data.begin(), data.end(), [](int value) { Log(value); });
-    //第二种用法
+    // 第二种用法
     auto findNumber = std::find_if(funcArray.begin(), funcArray.end(),
                                    [](int value) { return value > 5; });
     std::cout << *findNumber << std::endl;
@@ -118,7 +118,7 @@ int main() {
   //   std::string decrease = vector2String(std::ref(array));
   //   std::cout << decrease << std::endl;
   //   //使用自定义函数进行降序排列
-  //   std::sort(array.begin(), array.end(), [](int a, int b) 
+  //   std::sort(array.begin(), array.end(), [](int a, int b)
   //             { return a > b; });
   //   std::string increase = vector2String(std::ref(array));
   //   std::cout << vector2String(std::ref(array)) << std::endl;
@@ -126,12 +126,41 @@ int main() {
   //   std::cin.get();
   // }
 
-  //类型双关
+  // 类型双关
   {
-    TestEntity e = {1,2};
-    std::cout << &e << std::endl;//获取到e的内存地址
-    std::cout << (int*)&e << std::endl;//将e的内存地址识别为int类型的内存地址
-    std::cout << *(int*)&e << std::endl;//解析转换后的内存地址，其实地址的内容为x的值
-    std::cout << *((int*)&e+1) << std::endl;//在x的起始地址上添加平移一个int的长度，也就是4个字节，得到y的值的地址
+    TestEntity e = {1, 2};
+    std::cout << &e << std::endl; // 获取到e的内存地址
+    std::cout << (int *)&e << std::endl; // 将e的内存地址识别为int类型的内存地址
+    std::cout << *(int *)&e
+              << std::endl; // 解析转换后的内存地址，其实地址的内容为x的值
+    std::cout
+        << *((int *)&e + 1)
+        << std::
+               endl; // 在x的起始地址上添加平移一个int的长度，也就是4个字节，得到y的值的地址
+  }
+
+  // Union
+  {
+    struct objA {
+      int x;
+      float y;
+    };
+
+    struct objB {
+      //union里面的数据共用一个内存地址
+      union {
+        struct {
+          int x, y, z, w;
+        };
+        struct {
+          objA a, b;
+        };
+      };
+    };
+
+    objB b = {1, 2, 3, 4};
+    std::cout << "===============Union================" << std::endl;
+    std::cout << &b.x << "," << &b.y << std::endl;
+    std::cout << &b.a << std::endl;
   }
 }
