@@ -3,9 +3,9 @@
  * @Version      : V1.0.0
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-06-17 16:32:44
- * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-06-17 16:52:15
- * @FilePath     : pch.hpp
+ * @LastEditors: milkandpotato milkandpotato@outlook.com
+ * @LastEditTime: 2024-06-17 20:15:30
+ * @FilePath: /helloWorld/include/pch.hpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-06-17 16:32:44
  */
@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <GLFW/glfw3.h>
 #include <thread>
+#include <fstream>
 
 #ifdef _WIN32
     #include <windows.h>

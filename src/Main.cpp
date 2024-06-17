@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-17 19:59:59
+ * @LastEditTime: 2024-06-17 20:24:49
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -17,7 +17,10 @@
 #include "../include/NumberUtils.hpp"
 #include "../include/Player.h"
 #include "../include/ThreadTest.hpp"
+#include <fstream>
 #include <iostream>
+#include <optional>
+#include <string>
 #include <tuple>
 
 // 函数指针
@@ -237,9 +240,18 @@ int main() {
 
   // 结构化绑定（在C++17以后的版本生效）
   {
-    std::cout <<"===============struct binding================" << std::endl;
-    auto [name,age] = getTuple();
+    std::cout << "===============struct binding================" << std::endl;
+    auto [name, age] = getTuple();
     std::cout << "name:" << name << std::endl;
     std::cout << "age:" << age << std::endl;
+  }
+
+  // optional数据处理
+  {
+    std::cout << "===============optional use================" << std::endl;
+    std::optional<std::tuple<std::string, int>> data = getTuple();
+    if (data) {
+      std::cout << "get data successful!" << std::endl;
+    }
   }
 }
