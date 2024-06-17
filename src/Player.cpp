@@ -4,13 +4,12 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-04-27 15:58:16
  * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-05-02 14:49:20
+ * @LastEditTime : 2024-06-17 18:07:06
  * @FilePath     : Player.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-04-27 15:58:16
  */
 #include "../include/Player.h"
-#include "Player.h"
 
 // 构造函数
 Player::Player(const std::string &playerName)

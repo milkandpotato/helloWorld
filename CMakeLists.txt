@@ -17,6 +17,9 @@ message("=====================================")
 set(PROJECT_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(GLFW_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw)
+#设置ccache
+set(CMAKE_C_COMPILER_LAUNCHER ccache)
+set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
 #GLFW的头文件路径
 if(WIN32)
     set(GLFW_INCLUDE_PATH ${GLFW_PATH}/win/3.4/include)
@@ -48,6 +51,9 @@ message("GLFW_LIB_PATH："${GLFW_LIB_PATH})
 find_library(GLFW_LIBRARIES NAMES glfw3 PATHS ${GLFW_LIB_PATH} REQUIRED)
 message("GLFW_LIBRARIES："${GLFW_LIBRARIES})
 message("=====================================")
+
+#预编译头文件
+target_precompile_headers(hello PUBLIC "include/pch.hpp")
 
 ##添加引用的第三方库的路径
 target_link_libraries(${PROJECT_NAME} ${GLFW_LIBRARIES})

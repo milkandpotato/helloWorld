@@ -9,8 +9,6 @@
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-04-27 15:52:20
  */
-#include <iostream>
-#include <string>
 
 #include "../include/Entity.h"
 

@@ -8,10 +8,7 @@
  * 
  * Copyright (c) 2024 by milkandpotato, All Rights Reserved. 
  */
-#pragma once
-
-#include <iostream>
-#include <string>
+#include "../include/pch.hpp"
 
 template <typename T> 
 void Log(const T &message){

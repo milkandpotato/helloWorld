@@ -9,10 +9,7 @@
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-06-14 16:53:55
  */
-#pragma once
-
-#include <string>
-#include <vector>
+#include "../include/pch.hpp"
 
 // 数组拼接输出文本
 std::string vector2String(const std::vector<int> &array);

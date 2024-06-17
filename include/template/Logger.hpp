@@ -1,17 +1,16 @@
 /*
- * @Author: milkandpotato milkandpotato@outlook.com
- * @Date: 2024-05-12 15:27:38
- * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-05-12 15:32:40
- * @FilePath: /helloWorld/include/template/Logger.hpp
- * @Description: 
- * 
- * Copyright (c) 2024 by milkandpotato, All Rights Reserved. 
+ * @Description  : 
+ * @Version      : V1.0.0
+ * @Author       : 雨翀 孙 milkandpotato@outlook.com
+ * @Date         : 2024-06-17 16:53:19
+ * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
+ * @LastEditTime : 2024-06-17 16:59:15
+ * @FilePath     : Logger.hpp
+ * Copyright 2024 Marvin, All Rights Reserved. 
+ * 2024-06-17 16:53:19
  */
-#pragma once
 
 #include "./Log.hpp"
-#include <string>
 
 template <typename T> class Logger {
 public:

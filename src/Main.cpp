@@ -10,12 +10,9 @@
  * 2024-05-02 16:34:31
  */
 
-// #include <GLFW/glfw3.h>
-#include <algorithm>
-#include <iostream>
-#include <string.h>
-#include <vector>
-// #include <thread>
+//预编译头文件加载
+#include "../include/pch.hpp"
+
 #include "../include/NumberUtils.hpp"
 #include "../include/ThreadTest.hpp"
 #include "../include/template/Log.hpp"

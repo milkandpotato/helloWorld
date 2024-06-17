@@ -8,11 +8,8 @@
  * 
  * Copyright (c) 2024 by milkandpotato, All Rights Reserved. 
  */
-#pragma once
+#include "../include/pch.hpp"
 
-#include <iostream>
-#include <vector>
-#include <string>
 using namespace std;
 
 void printMessage(vector<string>& msg);
