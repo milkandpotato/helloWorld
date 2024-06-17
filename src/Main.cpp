@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-17 20:49:12
+ * @LastEditTime: 2024-06-18 00:56:03
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -19,11 +19,14 @@
 #include "../include/ThreadTest.hpp"
 #include <fstream>
 #include <functional>
+#include <future>
 #include <iostream>
+#include <mutex>
 #include <optional>
 #include <string>
 #include <tuple>
 #include <variant>
+#include <vector>
 
 // 函数指针
 void ForEach(std::vector<int> &array, void (*func)(int)) {
@@ -257,14 +260,24 @@ int main() {
     }
   }
 
-  //variant
+  // variant
   {
     std::cout << "===============variant use================" << std::endl;
-    //variant存储所有可能的数据类型
-    std::variant<std::string,int> data;
+    // variant存储所有可能的数据类型
+    std::variant<std::string, int> data;
     data = "zhangsan";
     std::string stringData = std::get<std::string>(data);
     auto intData = std::get_if<int>(&data);
     std::cout << "getintData?" << (intData != nullptr) << std::endl;
+  }
+
+  // 异步编程
+  {
+    std::cout << "===============async================" << std::endl;
+    std::vector<std::future<void>> m_futures;
+    //std::lock_guard<int> lock; lock_guard锁
+    for (int i = 0; i < 10; i++) {
+      m_futures.push_back(std::async(std::launch::async, PrintInt,i));
+    }
   }
 }
