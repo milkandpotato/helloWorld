@@ -3,14 +3,18 @@
  * @Version      : V1.0.0
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-06-17 16:53:19
- * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
- * @LastEditTime : 2024-06-17 16:59:15
- * @FilePath     : Logger.hpp
+ * @LastEditors: milkandpotato milkandpotato@outlook.com
+ * @LastEditTime: 2024-06-17 19:11:31
+ * @FilePath: /helloWorld/include/template/Logger.hpp
  * Copyright 2024 Marvin, All Rights Reserved. 
  * 2024-06-17 16:53:19
  */
+ #ifndef LOGGER_HPP
+ #define LOGGER_HPP
 
 #include "./Log.hpp"
+
+#endif
 
 template <typename T> class Logger {
 public:

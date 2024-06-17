@@ -20,7 +20,6 @@ set(GLFW_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw)
 #设置ccache（需要先安装ccache）
 #mac: brew install ccache
 #win: scoop install ccache
-
 set(CMAKE_C_COMPILER_LAUNCHER ccache)
 set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
 #GLFW的头文件路径

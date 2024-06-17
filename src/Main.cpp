@@ -4,18 +4,19 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-16 23:11:38
+ * @LastEditTime: 2024-06-17 19:20:04
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
  */
 
-//预编译头文件加载
+// 预编译头文件加载
 #include "../include/pch.hpp"
 
+#include "../include/Entity.h"
 #include "../include/NumberUtils.hpp"
+#include "../include/Player.h"
 #include "../include/ThreadTest.hpp"
-#include "../include/template/Log.hpp"
 
 // 函数指针
 void ForEach(std::vector<int> &array, void (*func)(int)) {
@@ -144,7 +145,7 @@ int main() {
     };
 
     struct objB {
-      //union里面的数据共用一个内存地址
+      // union里面的数据共用一个内存地址
       union {
         struct {
           int x, y, z, w;
@@ -161,62 +162,72 @@ int main() {
     std::cout << &b.a << std::endl;
   }
 
-  //构造函数的虚函数
+  // 构造函数的虚函数
   {
-    std::cout << "===============Virtual Destructor================" << std::endl;
+    std::cout << "===============Virtual Destructor================"
+              << std::endl;
     class a {
-      public:
-      a(){
-        std::cout << "a created!" << std::endl;
-        
-      };
-      //将析构函数变成虚析构函数之后，相当于给b添加了一个析构函数
-      virtual ~a(){
-        std::cout << "a destroyed!" <<std::endl;
-      };
+    public:
+      a() { std::cout << "a created!" << std::endl; };
+      // 将析构函数变成虚析构函数之后，相当于给b添加了一个析构函数
+      virtual ~a() { std::cout << "a destroyed!" << std::endl; };
     };
 
-    class b : public a{
-      public:
-      b(){
-        std::cout << "b created!" <<std::endl;
+    class b : public a {
+    public:
+      b() {
+        std::cout << "b created!" << std::endl;
         array = new int[5];
       };
-      ~b(){
-        std::cout<< "b destroyed!" << std::endl;
+      ~b() {
+        std::cout << "b destroyed!" << std::endl;
         delete[] array;
       };
 
-      private:
-        int* array;
+    private:
+      int *array;
     };
 
-    std::cout << "=====>A" <<std::endl;
-    a* testA = new a();
+    std::cout << "=====>A" << std::endl;
+    a *testA = new a();
     delete testA;
-    std::cout << "=====>B" <<std::endl;
-    b* testB = new b();
+    std::cout << "=====>B" << std::endl;
+    b *testB = new b();
     delete testB;
-    std::cout << "=====>C" <<std::endl;
-    a* testC = new b();
-    delete testC;//delete C 的时候，调用了a和b的构造函数，但是只调用了a的析构函数，delete[] array未执行
-
+    std::cout << "=====>C" << std::endl;
+    a *testC = new b();
+    delete testC; // delete C
+                  // 的时候，调用了a和b的构造函数，但是只调用了a的析构函数，delete[]
+                  // array未执行
   }
 
-  //类型转换
+  // 类型转换
   {
-    //类型转换总共有四种
-    //1.static_cast
-    //2.dynamic_cast
-    //3.reinterpret_cast
-    //4.const_cast
+    // 类型转换总共有四种
+    // 1.static_cast
+    // 2.dynamic_cast
+    // 3.reinterpret_cast
+    // 4.const_cast
 
     std::cout << "===============Type Cast================" << std::endl;
     double a = 5.35;
     double value = (int)a + 5;
-    double value2 = static_cast<int>(a)+5;
+    double value2 = static_cast<int>(a) + 5;
     std::cout << value << std::endl;
     std::cout << value2 << std::endl;
+  }
 
+  // 动态转换
+  {
+    class Enemy : public Entity {};
+    Entity *entity = new Entity();
+    Player *player = new Player("zhangsan");
+
+    std::cout << "===============dynamic Cast================" << std::endl;
+    Entity *playerEntity = dynamic_cast<Entity *>(player);
+    std::cout << "playerEntity:" << playerEntity << std::endl;
+
+    Enemy *enemyEntity = dynamic_cast<Enemy *>(playerEntity);
+    std::cout << "enemyEntity:" << enemyEntity << std::endl;
   }
 }
