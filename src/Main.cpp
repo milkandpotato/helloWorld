@@ -4,7 +4,7 @@
  * @Author       : 雨翀 孙 milkandpotato@outlook.com
  * @Date         : 2024-05-02 16:34:31
  * @LastEditors: milkandpotato milkandpotato@outlook.com
- * @LastEditTime: 2024-06-17 20:24:49
+ * @LastEditTime: 2024-06-17 20:49:12
  * @FilePath: /helloWorld/src/Main.cpp
  * Copyright 2024 Marvin, All Rights Reserved.
  * 2024-05-02 16:34:31
@@ -18,10 +18,12 @@
 #include "../include/Player.h"
 #include "../include/ThreadTest.hpp"
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <optional>
 #include <string>
 #include <tuple>
+#include <variant>
 
 // 函数指针
 void ForEach(std::vector<int> &array, void (*func)(int)) {
@@ -253,5 +255,16 @@ int main() {
     if (data) {
       std::cout << "get data successful!" << std::endl;
     }
+  }
+
+  //variant
+  {
+    std::cout << "===============variant use================" << std::endl;
+    //variant存储所有可能的数据类型
+    std::variant<std::string,int> data;
+    data = "zhangsan";
+    std::string stringData = std::get<std::string>(data);
+    auto intData = std::get_if<int>(&data);
+    std::cout << "getintData?" << (intData != nullptr) << std::endl;
   }
 }
