@@ -41,6 +41,7 @@ aux_source_directory(./src SRC_LIST)
 ##排除mian文件夹下的文件
 list(REMOVE_ITEM SRC_LIST
     ./src/main/Main_1.cpp
+    ./src/main/Main_2.cpp
     #Math在mac中有已经定义好了的头文件
     ./src/Math.cpp 
 )
