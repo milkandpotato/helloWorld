@@ -1,3 +1,14 @@
+/*
+ * @Description  : 
+ * @Version      : V1.0.0
+ * @Author       : 雨翀 孙 milkandpotato@outlook.com
+ * @Date         : 2024-06-19 16:08:08
+ * @LastEditors  : 雨翀 孙 milkandpotato@outlook.com
+ * @LastEditTime : 2024-06-19 16:08:08
+ * @FilePath     : Main.cpp
+ * Copyright 2024 Marvin, All Rights Reserved. 
+ * 2024-06-19 16:08:08
+ */
 #include "../include/pch.hpp"
 
 #include "../include/Random.hpp"
