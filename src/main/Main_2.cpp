@@ -275,9 +275,28 @@ int main() {
   {
     std::cout << "===============async================" << std::endl;
     std::vector<std::future<void>> m_futures;
-    //std::lock_guard<int> lock; lock_guard锁
-    for (int i = 0; i < 10; i++) {
-      m_futures.push_back(std::async(std::launch::async, PrintInt,i));
+    // std::lock_guard<int> lock; lock_guard锁
+    for (int i = 0; i < 10; i++)
+    {
+      m_futures.push_back(std::async(std::launch::async, PrintInt, i));
     }
+  }
+
+  // 优化字符串的使用
+  {
+    std::cout << "===============use string_view================" << std::endl;
+
+    std::string name = "sun yuchong";
+    //#define STRING_VIEW 1
+    #if STRING_VIEW
+    std::string_view firstName(name.c_str(),3);
+    std::string_view lastName(name.c_str()+4,9);
+    #else
+    std::string firstName = name.substr(0, 3);
+    std::string lastName = name.substr(4, 9);
+    #endif
+
+    PrintString(firstName);
+    PrintString(lastName);
   }
 }
