@@ -29,20 +29,33 @@
 #include <vector>
 
 // 函数指针
-void ForEach(std::vector<int> &array, void (*func)(int)) {
-  for (int value : array) {
+void ForEach(std::vector<int> &array, void (*func)(int))
+{
+  for (int value : array)
+  {
     func(value);
   }
 }
 void PrintInt(int value) { std::cout << "value:" << value << std::endl; }
 
-struct TestEntity {
+void PrintString(const std::string &value) { std::cout << "value:" << value << std::endl; }
+//void PrintString(std::string_view value) { std::cout << "value:" << value << std::endl; }
+
+struct TestEntity
+{
   int x, y;
 };
 
 std::tuple<std::string, int> getTuple() { return {"zhangsan", 14}; };
 
-int main() {
+void *operator new(size_t size)
+{
+  std::cout << "allocate: " << size << std::endl;
+  return malloc(size);
+}
+
+int main()
+{
   /* std::cout << __cplusplus << std::endl;
   int a = glfwInit();
   std::cout << a << std::endl; */
@@ -61,10 +74,12 @@ int main() {
     ForEach(funcArray, PrintInt);
     // lambda
     // 第一种用法
-    std::for_each(data.begin(), data.end(), [](int value) { Log(value); });
+    std::for_each(data.begin(), data.end(), [](int value)
+                  { Log(value); });
     // 第二种用法
     auto findNumber = std::find_if(funcArray.begin(), funcArray.end(),
-                                   [](int value) { return value > 5; });
+                                   [](int value)
+                                   { return value > 5; });
     std::cout << *findNumber << std::endl;
   }
 
@@ -139,7 +154,7 @@ int main() {
   // 类型双关
   {
     TestEntity e = {1, 2};
-    std::cout << &e << std::endl; // 获取到e的内存地址
+    std::cout << &e << std::endl;        // 获取到e的内存地址
     std::cout << (int *)&e << std::endl; // 将e的内存地址识别为int类型的内存地址
     std::cout << *(int *)&e
               << std::endl; // 解析转换后的内存地址，其实地址的内容为x的值
@@ -151,18 +166,23 @@ int main() {
 
   // Union
   {
-    struct objA {
+    struct objA
+    {
       int x;
       float y;
     };
 
-    struct objB {
+    struct objB
+    {
       // union里面的数据共用一个内存地址
-      union {
-        struct {
+      union
+      {
+        struct
+        {
           int x, y, z, w;
         };
-        struct {
+        struct
+        {
           objA a, b;
         };
       };
@@ -178,20 +198,24 @@ int main() {
   {
     std::cout << "===============Virtual Destructor================"
               << std::endl;
-    class a {
+    class a
+    {
     public:
       a() { std::cout << "a created!" << std::endl; };
       // 将析构函数变成虚析构函数之后，相当于给b添加了一个析构函数
       virtual ~a() { std::cout << "a destroyed!" << std::endl; };
     };
 
-    class b : public a {
+    class b : public a
+    {
     public:
-      b() {
+      b()
+      {
         std::cout << "b created!" << std::endl;
         array = new int[5];
       };
-      ~b() {
+      ~b()
+      {
         std::cout << "b destroyed!" << std::endl;
         delete[] array;
       };
@@ -231,7 +255,9 @@ int main() {
 
   // 动态转换
   {
-    class Enemy : public Entity {};
+    class Enemy : public Entity
+    {
+    };
     Entity *entity = new Entity();
     Player *player = new Player("zhangsan");
 
@@ -255,7 +281,8 @@ int main() {
   {
     std::cout << "===============optional use================" << std::endl;
     std::optional<std::tuple<std::string, int>> data = getTuple();
-    if (data) {
+    if (data)
+    {
       std::cout << "get data successful!" << std::endl;
     }
   }
@@ -275,9 +302,28 @@ int main() {
   {
     std::cout << "===============async================" << std::endl;
     std::vector<std::future<void>> m_futures;
-    //std::lock_guard<int> lock; lock_guard锁
-    for (int i = 0; i < 10; i++) {
-      m_futures.push_back(std::async(std::launch::async, PrintInt,i));
+    // std::lock_guard<int> lock; lock_guard锁
+    for (int i = 0; i < 10; i++)
+    {
+      m_futures.push_back(std::async(std::launch::async, PrintInt, i));
     }
+  }
+
+  // 优化字符串的使用
+  {
+    std::cout << "===============use string_view================" << std::endl;
+
+    std::string name = "sun yuchong";
+    //#define STRING_VIEW 1
+    #if STRING_VIEW
+    std::string_view firstName(name.c_str(),3);
+    std::string_view lastName(name.c_str()+4,9);
+    #else
+    std::string firstName = name.substr(0, 3);
+    std::string lastName = name.substr(4, 9);
+    #endif
+
+    PrintString(firstName);
+    PrintString(lastName);
   }
 }
